@@ -5,25 +5,24 @@ using Patterns.Ex01.ExternalLibs.Twitter;
 
 namespace Patterns.Ex02
 {
-    public class TwitterUserService
+    public class TwitterUserService: AbstractUserService
     {
         readonly TwitterClient _client = new TwitterClient();
-
-        /// <summary>
-        /// Этот метод содержить дублирование с VkUserService.GetUserInfo
-        /// необходимо избавиться от дублирования (см. задание)
-        /// </summary>
-        /// <param name="pageUrl"></param>
-        /// <returns></returns>
-        public UserInfo GetUserInfo(String pageUrl)
+        
+        public override string GetUserName(string pageUrl)
         {
             var regex = new Regex("twitter.com/(.*)");
-            var userName = regex.Match(pageUrl).Groups[0].Value;
+            return regex.Match(pageUrl).Groups[0].Value;
+        }
 
-            var userId = GetUserId(userName);
+        public override string GetUserIdString(string pageUrl)
+        {
+            return GetUserId(GetUserName(pageUrl)).ToString();
+        }
 
-            TwitterUser[] subscribers = _client.GetSubscribers(userId);
-
+        public override UserInfo[] GetUserFriends(string pageUrl)
+        {
+            TwitterUser[] subscribers = _client.GetSubscribers(GetUserId(pageUrl));
             UserInfo[] friends = subscribers
                 .Select(c =>
                 {
@@ -35,14 +34,7 @@ namespace Patterns.Ex02
                     return userInfo;
                 })
                 .ToArray();
-
-            var result = new UserInfo
-            {
-                Name = userName,
-                UserId = userId.ToString(),
-                Friends = friends
-            };
-            return result;
+            return friends;
         }
 
         /// <summary>

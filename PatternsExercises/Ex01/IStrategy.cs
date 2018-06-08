@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Patterns.Ex01
 {
-    class Receiver
+    public interface IStrategy
     {
+        SocialNetworkUser[] GetSubscribers(String userName);
     }
 }

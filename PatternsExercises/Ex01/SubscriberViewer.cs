@@ -1,5 +1,7 @@
 using System;
 
+
+
 namespace Patterns.Ex01
 {
     public class SubscriberViewer
@@ -11,10 +13,27 @@ namespace Patterns.Ex01
         /// <param name="userName"></param>
         /// <param name="networkType"></param>
         /// <returns></returns>
+        public IStrategy strategy;
         public SocialNetworkUser[] GetSubscribers(String userName, SocialNetwork networkType)
         {
-            //TODO?
-            return null;
-        }
+            switch (networkType)
+            {
+                case SocialNetwork.Instagram:
+                    {
+                        strategy = new InstagramReceiver();
+                        break;
+                    }                    
+                case SocialNetwork.Twitter:
+                    {
+                        strategy = new TwitterReceiver();
+                        break;
+                    }
+                default:
+                    {
+                        return null;
+                    }              
+            }
+            return strategy.GetSubscribers(userName);
+        }        
     }
 }

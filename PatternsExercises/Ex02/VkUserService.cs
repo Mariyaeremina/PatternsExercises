@@ -1,26 +1,23 @@
-﻿namespace Patterns.Ex02
-{
-    public class VkUserService
-    {
-        /// <summary>
-        /// Этот метод содержить дублирование с TwitterUserService.GetUserInfo
-        /// необходимо избавиться от дублирования (см. задание)
-        /// </summary>
-        /// <param name="pageUrl"></param>
-        /// <returns></returns>
-        public UserInfo GetUserInfo(string pageUrl)
-        {
-            var userId = Parse(pageUrl);
-            UserInfo result = new UserInfo
-            {
-                Name = GetName(userId),
-                UserId = userId
-            };
+﻿using System;
 
-            VkUser[] users = GetFriendsById(result.UserId);
-            UserInfo[] friends = ConvertToUserInfo(users);
-            result.Friends = friends;
-            return result;
+namespace Patterns.Ex02
+{
+    public class VkUserService: AbstractUserService
+    {
+        public override string GetUserName(string pageUrl)
+        {
+            return GetName(GetUserIdString(pageUrl));
+        }
+
+        public override string GetUserIdString(string pageUrl)
+        {
+            return Parse(pageUrl);
+        }
+
+        public override UserInfo[] GetUserFriends(string pageUrl)
+        {
+            VkUser[] users = GetFriendsById(Parse(pageUrl));
+            return ConvertToUserInfo(users);
         }
 
         /// <summary>

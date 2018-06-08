@@ -51,18 +51,29 @@
     <Compile Include="Ex01\ExternalLibs\Instagram\InstagramUser.cs" />
     <Compile Include="Ex01\ExternalLibs\Twitter\TwitterClient.cs" />
     <Compile Include="Ex01\ExternalLibs\Twitter\TwitterUser.cs" />
+    <Compile Include="Ex01\InstagramReceiver.cs" />
+    <Compile Include="Ex01\IStrategy.cs" />
     <Compile Include="Ex01\SocialNetwork.cs" />
     <Compile Include="Ex01\SocialNetworkUser.cs" />
     <Compile Include="Ex01\SubscriberViewer.cs" />
+    <Compile Include="Ex01\TwitterReceiver.cs" />
+    <Compile Include="Ex02\AbstractUserService.cs" />
     <Compile Include="Ex02\TwitterUserService.cs" />
     <Compile Include="Ex02\UserInfo.cs" />
     <Compile Include="Ex02\VkUser.cs" />
     <Compile Include="Ex02\VkUserService.cs" />
     <Compile Include="Ex05\ExternalLibs\CacheUpdater.cs" />
-    <Compile Include="Ex05\SubEx_01\NewDatabaseSaver.cs" />
+    <Compile Include="Ex05\SubEx_01\CacheUpdaterDecorator.cs" />
     <Compile Include="Ex05\SubEx_01\DatabaseSaverClient.cs" />
     <Compile Include="Ex05\ExternalLibs\DatabaseSaver.cs" />
     <None Include="Ex05\SubEx_01\description.txt" />
+    <Compile Include="Ex05\SubEx_01\DatabaseSaverDecorator.cs" />
+    <Compile Include="Ex05\SubEx_01\MailSenderDecorator.cs" />
+    <Compile Include="Ex05\SubEx_02\CacheUpdaterObserver.cs" />
+    <Compile Include="Ex05\SubEx_02\DatabaseSaverObservable.cs" />
+    <Compile Include="Ex05\SubEx_02\IObservable.cs" />
+    <Compile Include="Ex05\SubEx_02\IObserver.cs" />
+    <Compile Include="Ex05\SubEx_02\MailSenderObserver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
